@@ -182,7 +182,7 @@ def generate_model(layer_arquitecture, activation, drop_rate, out_shape, loss, o
     #optimizer:          The algorithm used for optimization (string)
   #Outputs:
     #model:              A compiled model using a sigmoid function on the last layer (tensorflow model instance)
-  layers = [tf.keras.layers.InputLayer(input_shape=(1, 2))]
+  layers = [tf.keras.layers.InputLayer(input_dim = 2)]
   for val in layer_arquitecture:
     layers += [tf.keras.layers.Dense(val, activation = activation)]
   layers += [tf.keras.layers.Dense(out_shape, activation = 'sigmoid')]
@@ -275,11 +275,11 @@ start_time = time.time()
 for i in range(num_runs):
   eps *= decay
   if i % 500 == 0:
-        print("Episode {} of {}".format(i + 1, num_runs))
-        # if new_model == True:
-	    model.save(model_path + '/model')
-	    with open(results_path  + 'avg_ret.pickle', 'wb') as handle:
-	    pickle.dump(avg_ret, handle)
+  print("Episode {} of {}".format(i + 1, num_runs))
+  # if new_model == True:
+  model.save(model_path + '/model')
+  with open(results_path  + 'avg_ret.pickle', 'wb') as handle:
+    pickle.dump(avg_ret, handle)
         # else:
           # model.save('gdrive/My Drive/Colab Notebooks/Results/' + new_model_save_name)
           # with open('gdrive/My Drive/Colab Notebooks/Results/' + new_result_save_name + '.pickle', 'wb') as handle:
